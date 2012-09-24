@@ -1,4 +1,4 @@
-LayoutBuddy API
+LayoutBuddy® API
 ===============
 
 LayoutBuddy API toolkits
