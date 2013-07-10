@@ -3,6 +3,8 @@
 class LayoutBuddy
 {
     
+    const VERSION = 0.2;
+
     const API_URL = 'http://layoutbuddy.com/api/';
     const STATIC_URL = 'http://static.layoutbuddy.com/';
     
@@ -35,7 +37,7 @@ class LayoutBuddy
      * instance methods
      */
     
-    public function LayoutBuddy($publicKey, $privateKey)
+    public function __construct($publicKey, $privateKey)
     {
         if (!$publicKey || !$privateKey) {
             throw new Exception('Public and private keys must be set.');
@@ -47,7 +49,7 @@ class LayoutBuddy
     
     
     
-    public function buildSignedRequesUrl($method, $params)
+    public function buildSignedRequestUrl($method, $params)
     {
         // Prepare parameters
         $params['public_key'] = $this->_publicKey;
@@ -72,13 +74,18 @@ class LayoutBuddy
     {
         // If authentication required, prepare signed request
         if ($auth) {
-            $url = $this->buildSignedRequesUrl($method, $params);
+            $url = $this->buildSignedRequestUrl($method, $params);
         } else {
             $params['public_key'] = $this->_publicKey;
             $url = self::API_URL . $method . '?' . http_build_query($params);
         }
         
-        return file_get_contents($url);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        return curl_exec($ch);
     }
     
     

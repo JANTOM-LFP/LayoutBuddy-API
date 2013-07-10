@@ -15,7 +15,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>LayoutBuddy frontend example</title>
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
-    <script type="text/javascript" src="http://tool.layoutbuddy.com/embed/"></script>
+    <script type="text/javascript" src="//tool.layoutbuddy.com/embed/"></script>
     
 </head>
 <body>

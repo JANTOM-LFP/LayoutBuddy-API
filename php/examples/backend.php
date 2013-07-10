@@ -25,10 +25,10 @@
     );
     
     // Build signed url for direct download
-    $downloadUrl = $layoutBuddy->buildSignedRequesUrl('downloadPdf', $params);
+    $downloadUrl = $layoutBuddy->buildSignedRequestUrl('downloadPdf', $params);
     
     // Build signed url for widget
-    $widgetUrl = $layoutBuddy->buildSignedRequesUrl('widget', $params);
+    $widgetUrl = $layoutBuddy->buildSignedRequestUrl('widget', $params);
     
     // Image urls can be generated directly from the class
     $thumbnailUrl = LayoutBuddy::getThumbnailImage($params['id']);
