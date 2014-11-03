@@ -5,8 +5,8 @@ class LayoutBuddy
     
     const VERSION = 0.2;
 
-    const API_URL = 'http://layoutbuddy.com/api/';
-    const STATIC_URL = 'http://static.layoutbuddy.com/';
+    const API_URL = 'https://www.layoutbuddy.com/api/';
+    const STATIC_URL = 'https://s3-eu-west-1.amazonaws.com/static.layoutbuddy.com/';
     
     private $_publicKey;
     private $_privateKey;
@@ -58,13 +58,13 @@ class LayoutBuddy
         
         // Generate signature
         ksort($params);
-        $message = $method . '?' . http_build_query($params);
+        $message = $method . '?' . http_build_query($params, '', '&');
         $signature = hash_hmac('sha1', $message, $this->_privateKey, false);
         
         // Add signature
         $params['signature'] = $signature;
         
-        $signedUrl = self::API_URL . $method . '?' . http_build_query($params);
+        $signedUrl = self::API_URL . $method . '?' . http_build_query($params, '', '&');
         return $signedUrl;
     }
     
